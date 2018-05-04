@@ -12,11 +12,13 @@ path4 = "geneweb-4.10/gw"
 path6 = "geneweb-6.08/gw"
 
 def load_cfg():
+    global path4, path6
     fin = open("config.txt", "r")
     for line in fin.readlines():
         a, b = line.split('=')
-        print(a, b)
-        globals()[a.strip().rstrip()] = '/'.join(b.strip().rstrip().split('\\'))
+        globals()[a.strip().rstrip()] = b.strip().rstrip()
+    path4 = '/'.join(os.path.abspath(path4).strip().rstrip().split('\\'))
+    path6 = '/'.join(os.path.abspath(path6).strip().rstrip().split('\\'))
     fin.close()
 
 def parse_name(s):
@@ -39,7 +41,7 @@ def main():
     
     # start gwd.exe from base4
     os.system('taskkill /f /im gwd.exe')
-    os.system('cd "' + path4 + '" & start gwd.exe')
+    os.system('cd /d "' + path4 + '" & start gwd.exe')
     
     for old_name in os.listdir(path4 + "/images/" + main_name):
         url_name = "%D7".join(old_name.split('Ч'))

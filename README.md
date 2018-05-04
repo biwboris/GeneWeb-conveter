@@ -11,7 +11,7 @@ This programm help's you convert GeneWeb base from version 4 to 6. GeneWeb versi
 ## Installation
 * Building
     - Run ```python setup.py build``` for new gwconv build.
-    - Rename config_example.txt to config.txt and copy to build folder.
+    - Make copy of config_example.txt with name config.txt and copy it to build folder.
 
 * Running
     - Fill config.txt with your paths.
