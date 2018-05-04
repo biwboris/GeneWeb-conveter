@@ -14,11 +14,13 @@ path4 = "geneweb-4.10/gw"
 path6 = "geneweb-6.08/gw"
 
 def load_cfg():
+    global path4, path6
     fin = open("config.txt", "r")
     for line in fin.readlines():
         a, b = line.split('=')
-        print(a, b)
-        globals()[a.strip().rstrip()] = '/'.join(b.strip().rstrip().split('\\'))
+        globals()[a.strip().rstrip()] = b.strip().rstrip()
+    path4 = '/'.join(os.path.abspath(path4).strip().rstrip().split('\\'))
+    path6 = '/'.join(os.path.abspath(path6).strip().rstrip().split('\\'))
     fin.close()
 
 def recode():
@@ -46,13 +48,17 @@ def main():
     load_cfg()
     
     # create .gw file using gwu.exe from main base
-    os.system('cd "' + path4 + '" & gwu.exe ' + main_name + ' -o ' + first_name + '.gw > comm.log')
+    os.system('cd /d "' + path4 + '" & gwu.exe ' + main_name + ' -o ' + first_name + '.gw > comm.log')
     
     # create new .gw file with new encoding
     recode()
     
     # using new .gw file create new base ver6
-    os.system('cd "' + path6 + '" & gwc.exe -nofail -f ' + second_name + '.gw -o ' + res_name + ' -nc > comm.log')
+    os.system('cd /d "' + path6 + '" & gwc.exe -nofail -f ' + second_name + '.gw -o ' + res_name + ' -nc > comm.log')
+    
+    # clear
+    os.system('cd /d "' + path4 + '" & del "' + first_name + '.gw"')
+    os.system('cd /d "' + path6 + '" & del "' + second_name + '.gw" & del "' + second_name + '.gwo"')
 
 
 if __name__ == "__main__":

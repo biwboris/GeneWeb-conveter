@@ -1,0 +1,4 @@
+main_name = Genbase
+res_name  = Genbase6
+path4     = C:\gwconv\geneweb-4.10\gw
+path6     = C:\gwconv\geneweb-6.08\gw

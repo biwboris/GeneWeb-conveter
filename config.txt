@@ -1,4 +1,0 @@
-main_name = Genbase
-res_name  = Genbase6
-path4     = C:\gwconv\GeneWeb\GeneWeb_Bases\gw
-path6     = geneweb-6.08/gw
